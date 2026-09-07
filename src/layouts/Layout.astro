@@ -1,0 +1,25 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "+Lindo — Diseño y decoración a medida",
+  description = "Diseño a medida, asesoramiento y colocación de vinilos decorativos e intervenciones integrales de espacios en Montevideo, Uruguay.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/logo/fondo-bordo.png" />
+  </head>
+  <body class="bg-blanco text-negro antialiased">
+    <slot />
+  </body>
+</html>
