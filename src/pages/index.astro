@@ -41,19 +41,37 @@ const galeria = [
   <WhatsAppButton />
 
   <!-- Hero -->
-  <section class="relative text-crema">
+  <section class="relative text-crema overflow-hidden">
     <img
       src="/gallery/hero.jpg"
       alt=""
-      class="absolute inset-0 h-full w-full object-cover"
+      class="absolute inset-0 h-full w-full object-cover animate-kenburns"
     />
     <div class="absolute inset-0 bg-bordo/85"></div>
+
+    <div
+      class="pointer-events-none absolute -top-16 -left-16 h-72 w-72 rounded-full bg-crema/10 blur-3xl animate-drift"
+    ></div>
+    <div
+      class="pointer-events-none absolute -bottom-24 -right-10 h-80 w-80 rounded-full bg-crema/10 blur-3xl animate-drift-slow"
+    ></div>
+
     <div class="relative mx-auto max-w-6xl px-6 py-24 md:py-32 text-center">
-      <img src="/logo/fondo-bordo.png" alt="+Lindo" class="mx-auto mb-8 h-14 w-auto" />
-      <h1 class="text-3xl md:text-5xl font-bold leading-tight max-w-3xl mx-auto">
+      <div class="mx-auto mb-8 h-20 aspect-[1102/294] overflow-hidden animate-fade-up">
+        <img
+          src="/logo/fondo-bordo.png"
+          alt="+Lindo"
+          class="h-full w-full object-cover animate-float"
+        />
+      </div>
+      <h1
+        class="text-3xl md:text-5xl font-bold leading-tight max-w-3xl mx-auto animate-fade-up [animation-delay:120ms]"
+      >
         Te ayudamos a reconectar con tus espacios para que los sientas verdaderamente tuyos.
       </h1>
-      <p class="mt-6 text-lg md:text-xl text-crema/90 max-w-2xl mx-auto">
+      <p
+        class="mt-6 text-lg md:text-xl text-crema/90 max-w-2xl mx-auto animate-fade-up [animation-delay:240ms]"
+      >
         Diseño a medida, asesoramiento y colocación. Especialistas en vinilos decorativos, con
         diseños integrales que contemplan carpintería, herrería y más.
       </p>
@@ -61,11 +79,21 @@ const galeria = [
         href={whatsappLink()}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-block mt-10 rounded-full bg-crema text-bordo font-bold px-8 py-4 hover:bg-white transition-colors"
+        class="inline-block mt-10 rounded-full bg-crema text-bordo font-bold px-8 py-4 transition-all duration-300 hover:bg-white hover:scale-105 hover:shadow-xl hover:shadow-black/20 animate-fade-up [animation-delay:360ms]"
       >
         Escribinos por WhatsApp
       </a>
     </div>
+
+    <a
+      href="#servicios"
+      aria-label="Ver más"
+      class="absolute bottom-6 left-1/2 -translate-x-1/2 text-crema/80 hover:text-crema transition-colors animate-bounce-slow"
+    >
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M19 12l-7 7-7-7" />
+      </svg>
+    </a>
   </section>
 
   <!-- Servicios -->
@@ -76,8 +104,11 @@ const galeria = [
     </p>
     <div class="grid md:grid-cols-3 gap-8">
       {
-        servicios.map((s) => (
-          <div class="rounded-2xl border border-black/10 p-8">
+        servicios.map((s, i) => (
+          <div
+            class="reveal opacity-0 translate-y-6 transition-all duration-700 ease-out rounded-2xl border border-black/10 p-8 hover:shadow-lg hover:shadow-black/5 hover:-translate-y-1 hover:border-bordo/30"
+            style={`transition-delay: ${i * 120}ms`}
+          >
             <h3 class="text-xl font-bold text-bordo mb-3">{s.titulo}</h3>
             <p class="text-black/70">{s.descripcion}</p>
           </div>
@@ -86,17 +117,36 @@ const galeria = [
     </div>
   </section>
 
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-6");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  </script>
+
   <!-- Sostenibilidad -->
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
-      <div>
+      <div class="reveal opacity-0 translate-y-6 transition-all duration-700 ease-out">
         <h2 class="text-2xl md:text-3xl font-bold mb-4">Comprometidos con la sostenibilidad</h2>
         <p class="text-black/70">
           Trabajamos con biovinilos y tintas ecológicas, cuidando el impacto de cada proyecto sin
           resignar calidad ni diseño.
         </p>
       </div>
-      <div class="aspect-video rounded-2xl bg-black/5 flex items-center justify-center text-black/40 text-sm">
+      <div
+        class="reveal opacity-0 translate-y-6 transition-all duration-700 ease-out [transition-delay:120ms] aspect-video rounded-2xl bg-black/5 flex items-center justify-center text-black/40 text-sm"
+      >
         [ Imagen / video de sostenibilidad — pendiente ]
       </div>
     </div>
@@ -104,42 +154,123 @@ const galeria = [
 
   <!-- Galería -->
   <section id="catalogo" class="mx-auto max-w-6xl px-6 py-20">
-    <h2 class="text-2xl md:text-3xl font-bold mb-2">Galería</h2>
-    <p class="text-black/60 mb-10 max-w-2xl">
-      Antes y después de nuestros proyectos, y diseños de nuestro banco de imágenes.
-    </p>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {
-        galeria.map((g) => (
-          <div class="group relative aspect-square overflow-hidden rounded-xl">
-            <img
-              src={g.src}
-              alt={g.categoria}
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 transition-opacity group-hover:opacity-100">
-              <span class="p-3 text-xs font-bold text-white">{g.categoria}</span>
-            </div>
-          </div>
-        ))
-      }
+    <div class="reveal opacity-0 translate-y-6 transition-all duration-700 ease-out flex items-end justify-between gap-6 mb-10">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold mb-2">Galería</h2>
+        <p class="text-black/60 max-w-2xl">
+          Antes y después de nuestros proyectos, y diseños de nuestro banco de imágenes.
+        </p>
+      </div>
+      <div class="hidden md:flex gap-2 shrink-0">
+        <button
+          id="galeria-prev"
+          aria-label="Anterior"
+          class="h-10 w-10 rounded-full border border-black/15 hover:bg-bordo hover:text-crema hover:border-bordo hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center text-lg"
+        >
+          ‹
+        </button>
+        <button
+          id="galeria-next"
+          aria-label="Siguiente"
+          class="h-10 w-10 rounded-full border border-black/15 hover:bg-bordo hover:text-crema hover:border-bordo hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center text-lg"
+        >
+          ›
+        </button>
+      </div>
     </div>
+
+    <div class="relative">
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-10 md:w-16 bg-gradient-to-r from-white to-transparent z-10"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-10 md:w-16 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+      <div
+        id="galeria-track"
+        class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 cursor-grab select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {
+          galeria.map((g) => (
+            <div class="group relative shrink-0 snap-center w-[75%] sm:w-[45%] md:w-72 aspect-square overflow-hidden rounded-xl shadow-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/20">
+              <img
+                src={g.src}
+                alt={g.categoria}
+                draggable="false"
+                class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+              />
+              <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <span class="p-3 text-xs font-bold text-white translate-y-1 transition-transform duration-300 group-hover:translate-y-0">
+                  {g.categoria}
+                </span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
     <p class="mt-6 text-xs text-black/40">
       Fotos de referencia — se reemplazan por proyectos propios a medida que estén disponibles.
     </p>
   </section>
 
+  <script>
+    const track = document.getElementById("galeria-track");
+    const prev = document.getElementById("galeria-prev");
+    const next = document.getElementById("galeria-next");
+
+    function scrollByCard(dir: number) {
+      if (!track) return;
+      const card = track.querySelector<HTMLElement>(":scope > div");
+      const amount = (card?.offsetWidth ?? 300) + 16; // + gap-4
+      track.scrollBy({ left: dir * amount, behavior: "smooth" });
+    }
+
+    prev?.addEventListener("click", () => scrollByCard(-1));
+    next?.addEventListener("click", () => scrollByCard(1));
+
+    // Arrastrar con mouse (en touch ya funciona nativo con el swipe)
+    if (track) {
+      let isDragging = false;
+      let startX = 0;
+      let startScroll = 0;
+
+      track.addEventListener("pointerdown", (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        startScroll = track.scrollLeft;
+        track.classList.add("cursor-grabbing");
+        track.setPointerCapture(e.pointerId);
+      });
+
+      track.addEventListener("pointermove", (e) => {
+        if (!isDragging) return;
+        track.scrollLeft = startScroll - (e.clientX - startX);
+      });
+
+      const stopDrag = () => {
+        isDragging = false;
+        track.classList.remove("cursor-grabbing");
+      };
+
+      track.addEventListener("pointerup", stopDrag);
+      track.addEventListener("pointercancel", stopDrag);
+      track.addEventListener("pointerleave", stopDrag);
+    }
+  </script>
+
   <!-- Guías / Novedades -->
   <section id="guias" class="bg-crema">
     <div class="mx-auto max-w-6xl px-6 py-20 grid md:grid-cols-2 gap-12">
-      <div>
+      <div class="reveal opacity-0 translate-y-6 transition-all duration-700 ease-out">
         <h2 class="text-2xl md:text-3xl font-bold mb-4">Guías</h2>
         <p class="text-black/70">
           Contenido para ayudarte a elegir: tipos de vinilo, cómo medir tu espacio, colocación y
           cuidados. Próximamente.
         </p>
       </div>
-      <div id="novedades">
+      <div
+        id="novedades"
+        class="reveal opacity-0 translate-y-6 transition-all duration-700 ease-out [transition-delay:120ms]"
+      >
         <h2 class="text-2xl md:text-3xl font-bold mb-4">Novedades</h2>
         <p class="text-black/70">
           Nueva maquinaria, materiales y todo lo que vamos sumando al equipo. Próximamente.
@@ -150,18 +281,22 @@ const galeria = [
 
   <!-- Empresa -->
   <section id="empresa" class="mx-auto max-w-6xl px-6 py-20">
-    <h2 class="text-2xl md:text-3xl font-bold mb-4">Sobre nosotros</h2>
-    <p class="text-black/70 max-w-2xl">
-      +LINDO nace en Montevideo con la idea de que transformar un espacio no tiene por qué ser
-      complicado. Nos hacemos cargo de cada detalle para que vos solo tengas que sentarte a
-      disfrutar el resultado.
-    </p>
+    <div class="reveal opacity-0 translate-y-6 transition-all duration-700 ease-out">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">Sobre nosotros</h2>
+      <p class="text-black/70 max-w-2xl">
+        +LINDO nace en Montevideo con la idea de que transformar un espacio no tiene por qué ser
+        complicado. Nos hacemos cargo de cada detalle para que vos solo tengas que sentarte a
+        disfrutar el resultado.
+      </p>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer class="bg-negro text-white">
     <div class="mx-auto max-w-6xl px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-      <img src="/logo/fondo-negro.png" alt="+Lindo" class="h-7 w-auto" />
+      <div class="h-9 aspect-[1102/294] overflow-hidden">
+        <img src="/logo/fondo-negro.png" alt="+Lindo" class="h-full w-full object-cover" />
+      </div>
       <div class="flex gap-6 text-sm text-white/70">
         <a href="#" class="hover:text-white">Garantías</a>
         <a href="#" class="hover:text-white">Términos y condiciones</a>
