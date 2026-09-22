@@ -31,6 +31,14 @@ const config: Config = {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
           "50%": { transform: "translate(24px, -18px) scale(1.08)" },
         },
+        // Mismo efecto que el "ping" de Tailwind — propio para no depender de
+        // que la clase "animate-ping" exista en el HTML (si no, Tailwind
+        // purga su @keyframes por content-scanning y esta no tendría nada
+        // que reproducir). Corre 2 veces y para: el botón de WhatsApp la
+        // relanza cada 60s por JS en vez de dejarla en loop infinito.
+        waPing: {
+          "75%, 100%": { transform: "scale(2)", opacity: "0" },
+        },
       },
       animation: {
         kenburns: "kenburns 18s ease-in-out infinite alternate",
@@ -39,6 +47,8 @@ const config: Config = {
         float: "float 4s ease-in-out infinite",
         drift: "drift 13s ease-in-out infinite",
         "drift-slow": "drift 19s ease-in-out infinite reverse",
+        // 2 titileos y para (ver comentario en keyframes.waPing).
+        "wa-ping": "waPing 1s cubic-bezier(0,0,0.2,1) 2",
       },
     },
   },
