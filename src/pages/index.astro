@@ -22,19 +22,21 @@ const servicios = [
   },
 ];
 
-// Fotos de referencia (banco Magnific, licencia premium de la cuenta) —
-// para reemplazar cuando haya fotos reales de proyectos propios.
-// Categorías con el mismo "+" que los títulos de servicios de arriba, para
-// que la etiqueta de cada foto en la Galería diga lo mismo que la tarjeta.
+// Imágenes ilustrativas generadas con IA a partir de diseños del catálogo
+// curado de +Lindo (tabla b2c_catalogo_imagenes del CRM), 3 por servicio.
+// Las fotos anteriores (banco Magnific) quedaron en backup/galeria-anterior
+// por si hay que volver a ellas. Se reemplazan por proyectos propios a medida
+// que haya fotos reales.
 const galeria = [
-  { src: "/gallery/mural-botanico.jpg", categoria: "Deco + linda" },
-  { src: "/gallery/wallpaper-escandinava.jpg", categoria: "Deco + linda" },
-  { src: "/gallery/interior-lujoso-1.jpg", categoria: "Espacios + lindos" },
-  { src: "/gallery/habitacion-ninos-1.jpg", categoria: "Cosas + tuyas" },
-  { src: "/gallery/wallpaper-clasica.jpg", categoria: "Deco + linda" },
-  { src: "/gallery/interior-lujoso-2.jpg", categoria: "Espacios + lindos" },
-  { src: "/gallery/calcomanias-animales.jpg", categoria: "Cosas + tuyas" },
-  { src: "/gallery/habitacion-ninos-2.jpg", categoria: "Cosas + tuyas" },
+  { src: "/gallery/deco-living-bosque.jpg", categoria: "Deco + linda" },
+  { src: "/gallery/espacios-heladera.jpg", categoria: "Espacios + lindos" },
+  { src: "/gallery/cosas-cuadro-montanas.jpg", categoria: "Cosas + tuyas" },
+  { src: "/gallery/deco-cuarto-infantil.jpg", categoria: "Deco + linda" },
+  { src: "/gallery/espacios-recepcion.jpg", categoria: "Espacios + lindos" },
+  { src: "/gallery/cosas-lamina-dinosaurio.jpg", categoria: "Cosas + tuyas" },
+  { src: "/gallery/deco-dormitorio-ondas.jpg", categoria: "Deco + linda" },
+  { src: "/gallery/espacios-cocina-madera.jpg", categoria: "Espacios + lindos" },
+  { src: "/gallery/cosas-guarda-flores.jpg", categoria: "Cosas + tuyas" },
 ];
 
 // Preguntas frecuentes: de relleno hasta que el diseñador pase las reales.
@@ -208,7 +210,7 @@ const faqs = [
     </div>
 
     <p class="mt-6 text-xs text-black/40">
-      Fotos de referencia — se reemplazan por proyectos propios a medida que estén disponibles.
+      Imágenes ilustrativas con diseños de nuestro catálogo — se reemplazan por proyectos propios a medida que estén disponibles.
     </p>
   </section>
 
