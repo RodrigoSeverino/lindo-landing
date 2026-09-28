@@ -31,13 +31,18 @@ const config: Config = {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
           "50%": { transform: "translate(24px, -18px) scale(1.08)" },
         },
-        // Mismo efecto que el "ping" de Tailwind — propio para no depender de
-        // que la clase "animate-ping" exista en el HTML (si no, Tailwind
-        // purga su @keyframes por content-scanning y esta no tendría nada
-        // que reproducir). Corre 2 veces y para: el botón de WhatsApp la
-        // relanza cada 60s por JS en vez de dejarla en loop infinito.
-        waPing: {
-          "75%, 100%": { transform: "scale(2)", opacity: "0" },
+        // Botón de WhatsApp: ciclo de 38 s = ~2,7 s de actividad (dos latidos
+        // del botón y dos ondas del anillo) y ~35 s quieto, para que se note
+        // sin volverse invasivo. Todo en CSS: antes titilaba al cargar y
+        // después cada 60 s por JS, y parecía que estaba fijo.
+        waLatido: {
+          "0%, 7%, 100%": { transform: "scale(1)" },
+          "1.75%, 5.25%": { transform: "scale(1.08)" },
+          "3.5%": { transform: "scale(1)" },
+        },
+        waOnda: {
+          "0%, 3.6%": { transform: "scale(1)", opacity: "0.6" },
+          "3.5%, 7%, 100%": { transform: "scale(1.9)", opacity: "0" },
         },
       },
       animation: {
@@ -47,8 +52,9 @@ const config: Config = {
         float: "float 4s ease-in-out infinite",
         drift: "drift 13s ease-in-out infinite",
         "drift-slow": "drift 19s ease-in-out infinite reverse",
-        // 2 titileos y para (ver comentario en keyframes.waPing).
-        "wa-ping": "waPing 1s cubic-bezier(0,0,0.2,1) 2",
+        // Ver keyframes.waLatido: arranca a los 3 s de cargar la página.
+        "wa-latido": "waLatido 38s ease-in-out 3s infinite",
+        "wa-onda": "waOnda 38s cubic-bezier(0,0,0.2,1) 3s infinite",
       },
     },
   },

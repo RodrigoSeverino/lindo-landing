@@ -36,6 +36,53 @@ const galeria = [
   { src: "/gallery/calcomanias-animales.jpg", categoria: "Cosas + tuyas" },
   { src: "/gallery/habitacion-ninos-2.jpg", categoria: "Cosas + tuyas" },
 ];
+
+// Preguntas frecuentes. Respuestas generales a propósito (sin precios ni
+// plazos fijos): lo concreto lo da la cotización.
+const faqs = [
+  {
+    pregunta: "¿Cómo pido una cotización?",
+    respuesta:
+      "Escribinos por WhatsApp o Instagram. Para láminas, stickers, cuadros, pizarras y guardas (Cosas + tuyas) te cotizamos al instante con tus medidas. Para proyectos de Espacios + lindos y Deco + linda te pedimos algunos datos y fotos, y un asesor te arma la propuesta.",
+  },
+  {
+    pregunta: "¿Qué tengo que mandar para un proyecto?",
+    respuesta:
+      "Contanos qué querés hacer, las medidas aproximadas y una foto de la superficie. Si ya tenés un diseño, mandalo; si no, podés elegir uno de nuestro catálogo o lo creamos juntos.",
+  },
+  {
+    pregunta: "¿Cómo mido mi pared o mi mueble?",
+    respuesta:
+      "Ancho y alto, en centímetros o metros. Si es un mueble con varias caras (frente, laterales), mandá la medida de cada una. No hace falta que sea exacta para cotizar: la confirmamos antes de producir.",
+  },
+  {
+    pregunta: "¿Sobre qué superficies se puede colocar un vinilo?",
+    respuesta:
+      "Paredes lisas pintadas, vidrio, azulejos, madera lisa o pintada, melamina, metal y electrodomésticos. No lo recomendamos sobre ladrillo a la vista, revoque rugoso o piedra, ni sobre superficies con humedad o pintura descascarada.",
+  },
+  {
+    pregunta: "¿Hacen la colocación?",
+    respuesta:
+      "Sí. Podés elegir colocación, envío a domicilio o retiro en nuestro local. Las visitas y colocaciones se coordinan de lunes a viernes de 8 a 17; fuera de ese horario tienen un costo adicional.",
+  },
+  {
+    pregunta: "¿Puedo usar mi propio diseño?",
+    respuesta:
+      "Sí, mandanos el archivo por WhatsApp. También podés elegir una imagen de nuestro catálogo o pedirnos que lo diseñemos para vos.",
+  },
+  {
+    pregunta: "¿Cómo se paga?",
+    respuesta: "Con transferencia bancaria o Mercado Pago.",
+  },
+  {
+    pregunta: "¿Hacen factura con RUT?",
+    respuesta: "Sí. Pedila por WhatsApp con los datos de la empresa y te la enviamos.",
+  },
+  {
+    pregunta: "¿Cuánto demora?",
+    respuesta: "Depende del producto y del proyecto: te confirmamos los plazos junto con la cotización.",
+  },
+];
 ---
 
 <Layout>
@@ -67,7 +114,7 @@ const galeria = [
         <img
           src="/logo/fondo-negro.png"
           alt="+Lindo"
-          class="h-full w-full object-cover animate-float"
+          class="h-full w-full object-cover"
         />
       </div>
       <h1
@@ -142,7 +189,7 @@ const galeria = [
   </script>
 
   <!-- Galería -->
-  <section id="catalogo" class="mx-auto max-w-6xl px-6 py-20">
+  <section id="galeria" class="mx-auto max-w-6xl px-6 py-20">
     <div class="reveal opacity-0 translate-y-6 transition-all duration-700 ease-out flex items-end justify-between gap-6 mb-10">
       <div>
         <h2 class="text-2xl md:text-3xl font-bold mb-2">Galería</h2>
@@ -297,6 +344,31 @@ const galeria = [
         complicado. Nos hacemos cargo de cada detalle para que vos solo tengas que sentarte a
         disfrutar el resultado.
       </p>
+    </div>
+  </section>
+
+  <!-- Preguntas frecuentes -->
+  <section id="faq">
+    <div class="mx-auto max-w-3xl px-6 py-20">
+      <h2 class="reveal opacity-0 translate-y-6 transition-all duration-700 ease-out text-2xl md:text-3xl font-bold mb-2">
+        Preguntas frecuentes
+      </h2>
+      <p class="text-black/60 mb-10">
+        ¿Te quedó otra duda? <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" class="font-semibold text-bordo hover:underline">Escribinos</a>.
+      </p>
+      <div class="divide-y divide-black/10 border-y border-black/10">
+        {
+          faqs.map((f) => (
+            <details class="group py-5 [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold text-left hover:text-bordo transition-colors">
+                {f.pregunta}
+                <span class="shrink-0 text-2xl leading-none text-bordo transition-transform duration-300 group-open:rotate-45">+</span>
+              </summary>
+              <p class="mt-3 text-black/70 leading-relaxed">{f.respuesta}</p>
+            </details>
+          ))
+        }
+      </div>
     </div>
   </section>
 
