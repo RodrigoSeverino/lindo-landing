@@ -1,8 +1,11 @@
-// TODO: reemplazar por el número real de WhatsApp de +LINDO antes de publicar.
-// Formato sin espacios ni símbolos, con código de país (ej: 59899123456).
-export const WHATSAPP_NUMBER = "000000000000";
-export const WHATSAPP_MESSAGE = "¡Hola! Quiero saber más sobre +LINDO.";
+// Número de WhatsApp de +LINDO (el mismo de ManyChat). Cualquier mensaje
+// dispara el bot y muestra el menú.
+export const WHATSAPP_NUMBER = "59891281111";
 
-export function whatsappLink(message: string = WHATSAPP_MESSAGE): string {
+// Mensajes con los que se abre el chat, según desde dónde entra el cliente.
+export const MENSAJE_CONSULTA = "¡Hola +Lindo! 👋 Quisiera hacerles una consulta.";
+export const MENSAJE_IDEA = "¡Hola +Lindo! 👋 Tengo una idea y me gustaría contárselas.";
+
+export function whatsappLink(message: string = MENSAJE_CONSULTA): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }

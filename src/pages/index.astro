@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Nav from "@/components/Nav.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
-import { whatsappLink } from "@/lib/constants";
+import { whatsappLink, MENSAJE_IDEA } from "@/lib/constants";
 
 const servicios = [
   {
@@ -92,7 +92,7 @@ const faqs = [
         Diseño, producción e instalación de ideas hechas para vos.
       </p>
       <a
-        href={whatsappLink()}
+        href={whatsappLink(MENSAJE_IDEA)}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-block mt-10 rounded-full bg-bordo text-crema font-bold px-8 py-4 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-black/20 animate-fade-up [animation-delay:360ms]"
